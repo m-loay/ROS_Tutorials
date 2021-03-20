@@ -28,6 +28,7 @@
 *.rar
 *.tar
 *.zip
+*.catkin_workspace
 
 # Logs and databases #
 ######################
