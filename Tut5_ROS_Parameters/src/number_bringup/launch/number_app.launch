@@ -1,0 +1,9 @@
+<launch>
+
+	<param name="/number_publish_frequency" type="double" value="3.0" />
+	<param name="/number_to_publish" type="int" value="20" />
+
+	<node name="number_publisher" pkg="number_counter_service_quiz" type="number_publisher" />
+	<node name="number_counter" pkg="number_counter_service_quiz" type="number_counter" />
+
+</launch>
