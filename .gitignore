@@ -49,6 +49,7 @@ _*
 _generated
 *.bak
 *.
+*.catkin_tools
 
 # OS generated files #
 ######################
