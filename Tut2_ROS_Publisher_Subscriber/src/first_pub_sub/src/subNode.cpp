@@ -6,7 +6,7 @@ void callback_TopicNode_data(const std_msgs::String& msg)
 {
     ROS_INFO("Message Received");
     const std::string msg_info("Sub node is receiving data from " + msg.data);
-    ROS_INFO(msg_info.c_str());
+    ROS_INFO("%s",msg_info.c_str());
 }
 
 int main(int argc, char **argv)

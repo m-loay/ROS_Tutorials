@@ -13,7 +13,7 @@ int main(int argc, char **argv)
 
     //Send a Log msg in terminal
     const std::string logMsg(nodeName+" has Started");
-    ROS_INFO(logMsg.c_str());
+    ROS_INFO("%s",logMsg.c_str());
 
     //create runining msg
     const std::string logMsgRun(nodeName+" is running");
@@ -25,7 +25,7 @@ int main(int argc, char **argv)
     while(ros::ok())
     {
         //Send a Log msg in terminal
-        ROS_INFO(logMsgRun.c_str());
+        ROS_INFO("%s",logMsgRun.c_str());
         rate.sleep();
     }
 }

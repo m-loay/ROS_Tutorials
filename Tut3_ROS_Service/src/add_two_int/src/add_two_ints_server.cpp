@@ -7,7 +7,7 @@ bool handl_add_two_ints(rospy_tutorials::AddTwoInts::Request &req, rospy_tutoria
     int result(req.a + req.b);
     const std::string sum("The Sum of"+ std::to_string(req.a) + " and " + std::to_string(req.a) + " ---> "
                           + std::to_string(result));
-    ROS_INFO(sum.c_str());
+    ROS_INFO("%s",sum.c_str());
     resp.sum = result;
     return true;
 }

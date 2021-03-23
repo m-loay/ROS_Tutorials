@@ -29,7 +29,7 @@ int main(int argc, char **argv)
     {
         const std::string sum("The Sum of"+ std::to_string(srv.request.a) + " and " + std::to_string(srv.request.b) 
                               + " ---> "+ std::to_string(srv.response.sum));
-        ROS_INFO(sum.c_str());
+        ROS_INFO("%s",sum.c_str());
     }
     else
     {

@@ -11,7 +11,7 @@ void callback_number(const std_msgs::Int64& msg)
 {
     //Prepare msg of received number & send it to ROSINFO
     std::string number("Received " + std::to_string(msg.data));
-    ROS_INFO(number.c_str());
+    ROS_INFO("%s",number.c_str());
 
     //Increment global counter with received data & publish the new value
     g_counter += msg.data;
@@ -21,7 +21,7 @@ void callback_number(const std_msgs::Int64& msg)
 
     //Prepare msg of new value & send it to ROSINFO
     std::string pub_msg("Counter now --> " + std::to_string(g_counter));
-    ROS_INFO(pub_msg.c_str());
+    ROS_INFO("%s",pub_msg.c_str());
 }
 
 int main(int argc, char **argv)

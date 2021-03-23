@@ -24,7 +24,7 @@ int main(int argc, char **argv)
 
     if(client.call(request))
     {
-        ROS_INFO(request.response.message.c_str());
+        ROS_INFO("%s",request.response.message.c_str());
     }
     else
     {

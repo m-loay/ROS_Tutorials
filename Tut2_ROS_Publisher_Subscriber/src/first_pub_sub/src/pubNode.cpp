@@ -23,7 +23,7 @@ int main(int argc, char **argv)
 
     //Send a Log msg in terminal
     const std::string msg_info(nodeName+" has started");
-    ROS_INFO(msg_info.c_str());
+    ROS_INFO("%s",msg_info.c_str());
 
     //create publish message
     const std::string msg_pub(nodeName+" is Publishing data to "+ TopicName);
