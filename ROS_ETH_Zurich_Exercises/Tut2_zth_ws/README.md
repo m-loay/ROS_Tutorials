@@ -2,21 +2,21 @@
 This is the solution to exercise 2, course Eth zurich. 
 
 ## Directory Structure
-* [config/](./smb_highlevel_controller/config)
-  * [default.yaml](./smb_highlevel_controller/config/default.yaml)
-* [include/](./smb_highlevel_controller/include)
-  * [smb_highlevel_controller/](./smb_highlevel_controller/include/smb_highlevel_controller)
-    * [smb_highlevel_controller.hpp](./smb_highlevel_controller/include/smb_highlevel_controller/smb_highlevel_controller.hpp)
-* [launch/](./smb_highlevel_controller/launch)
-  * [smb_highlevel_controller.launch](./smb_highlevel_controller/launch/smb_highlevel_controller.launch)
-* [src/](./smb_highlevel_controller/src)
-  * [smb_highlevel_controller.cpp](./smb_highlevel_controller/src/smb_highlevel_controller.cpp)
-  * [smb_highlevel_controller_node.cpp](./smb_highlevel_controller/src/smb_highlevel_controller_node.cpp)
-* [CMakeLists.txt](./smb_highlevel_controller/CMakeLists.txt)
-* [package.xml](./smb_highlevel_controller/package.xml)
-* [smb_control/](./src/smb_control)
-* [smb_description/](./src/smb_description)
-* [smb_gazebo/](./src/smb_gazebo)
+* [smb_highlevel_controller/](src/smb_highlevel_controller)
+  * [config/](src/smb_highlevel_controller/config)
+    * [default.yaml](src/smb_highlevel_controller/config/default.yaml)
+  * [include/](src/smb_highlevel_controller/include)
+    * [smb_highlevel_controller/](src/smb_highlevel_controller/include/smb_highlevel_controller)
+      * [smb_highlevel_controller.hpp](src/smb_highlevel_controller/include/smb_highlevel_controller/smb_highlevel_controller.hpp)
+  * [launch/](src/smb_highlevel_controller/launch)
+    * [smb_highlevel_controller.launch](src/smb_highlevel_controller/launch/smb_highlevel_controller.launch)
+  * [src/](src/smb_highlevel_controller/src)
+    * [smb_highlevel_controller.cpp](src/smb_highlevel_controller/src/smb_highlevel_controller.cpp)
+    * [smb_highlevel_controller_node.cpp](src/smb_highlevel_controller/src/smb_highlevel_controller_node.cpp)
+  * [CMakeLists.txt](src/smb_highlevel_controller/CMakeLists.txt)
+  * [package.xml](src/smb_highlevel_controller/package.xml)
+
+
 
 ## Exercise Description
 
@@ -25,15 +25,15 @@ In this exercise, it's required the following:
     `catkin_create_pkg  smb_highlevel_controller roscpp sensor_msgs`
 
 2.  Add a parameter file with topic name and queue size for the subscriber of the topic`:  
-    can be found here --> * [default.yaml](./smb_highlevel_controller/config/default.yaml)
+    can be found here --> * [config/](src/smb_highlevel_controller/config)
 
 
 3. Create a callback method for that subscriber which outputs the smallest distance
 measurement from the vector ranges in the message of the laser scanner:  
-    The implementaion can be found here --> * [smb_highlevel_controller.cpp](./smb_highlevel_controller/src/smb_highlevel_controller.cpp)
+    The implementaion can be found here --> * [smb_highlevel_controller.cpp](src/smb_highlevel_controller/src/smb_highlevel_controller.cpp)
 
 4. Create launch file to run smb simulation and run the smb_highlevel_controller node with parameter :  
-    The launch file can be found here -->* [smb_highlevel_controller.launch](./smb_highlevel_controller/launch/smb_highlevel_controller.launch)
+    The launch file can be found here --> * [smb_highlevel_controller.launch](src/smb_highlevel_controller/launch/smb_highlevel_controller.launch)
 
 5. Configure RVIZ and show laser scanner :
   - Gazebo output:  
