@@ -1,0 +1,8 @@
+subscriber_topic: /scan
+queue_size: 10
+kpVal : 1.0
+kiVal : 0.1
+kdVal : 0.0
+maxAngleRad : 2.36
+minTolDist : 0.9
+

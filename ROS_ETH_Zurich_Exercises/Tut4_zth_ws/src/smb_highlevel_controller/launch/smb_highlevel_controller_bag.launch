@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+
+
+<launch>
+  <!-- GAZEBO ARGUMENTS -->
+  <!-- Run Gazebo headless -->
+  <arg name="headless"                              default="false"/>
+  <!-- Model path -->
+  <arg name="model_path"                            default="$(find smb_gazebo)/"/>
+  <arg name="robot_namespace"                       default=""/>
+  <arg name="robot_model_name"                      default="smb"/>
+  <arg name="enable_ekf"                            default="true"/>
+
+  <!-- Name of the world -->
+  <arg name="world"                                 default="singlePillar"/>
+  <!-- Path to the world file -->
+  <arg name="world_file"                            default="$(find smb_gazebo)/worlds/$(arg world).world"/>
+  <arg name="laser_enabled"							            default="true"/>
+
+  <!-- Set the initial pose of the robot's main body -->
+  <arg name="x"                                     default="0.0"/>
+  <arg name="y"                                     default="0.0"/>
+  <arg name="z"                                     default="0.4"/>
+  <arg name="roll"                                  default="0.0"/>
+  <arg name="pitch"                                 default="0.0"/>
+  <arg name="yaw"                                   default="0.0"/>
+  <!-- Start paused -->
+  <arg name="paused"                                default="false"/>
+  <!-- Use simulation clock -->
+  <arg name="use_sim_time"                          default="true"/>
+  <!-- Debug mode -->
+  <arg name="debug"                                 default="false"/>
+  <!-- Verbose mode -->
+  <arg name="verbose"                               default="true"/>
+
+  <arg name="laser_scan_min_height"                  default="-0.2"/>
+  <arg name="laser_scan_max_height"                  default="0.1"/>
+  <arg name="description_file"    default="$(find smb_description)/urdf/smb_standalone.urdf.xacro"/>
+
+  <!-- GUI ARGUMENTS -->
+  <!-- Enable/disable Gazebo GUI -->
+  <arg name="run_gui"                               default="true"/>
+  
+  <!-- ROBOT ARGUMENTS -->
+  <!-- Name of the robot description parameter -->
+  <arg name="robot_description" default="robot_description"/>
+
+  <!-- Convert 3D velodyne scan to laser scan -->
+  <node name= "pointcloud_to_laserscan" pkg="pointcloud_to_laserscan" type="pointcloud_to_laserscan_node" if="$(arg laser_enabled)">
+        <remap from="cloud_in" to="/rslidar_points"/>
+        <remap from="scan" to="/scan"/>
+        <rosparam>
+            target_frame: rslidar # Leave disabled to output scan in pointcloud frame
+            transform_tolerance: 0.01
+            min_height: $(arg laser_scan_min_height)
+            max_height: $(arg laser_scan_max_height)
+
+            angle_min: -1.5708 # -M_PI/2
+            angle_max: 1.5708 # M_PI/2
+            angle_increment: 0.0087 # M_PI/360.0
+            scan_time: 0.03333
+            range_min: 0.45
+            range_max: 50.0
+            use_inf: true
+            inf_epsilon: 1.0
+
+            # Concurrency level, affects number of pointclouds queued for processing and number of threads used
+            # 0 : Detect number of cores
+            # 1 : Single threaded
+            # 2->inf : Parallelism level
+            concurrency_level: 1
+        </rosparam>
+  </node>
+
+  <include file="$(find smb_description)/launch/load.launch">
+    <arg name="description_name" value="$(arg robot_description)"/>
+    <arg name="description_file" value="$(arg description_file)"/>
+    <arg name="wheel_joint_type" value="continuous"/>
+    <arg name="robot_namespace"  value="$(arg robot_namespace)"/>
+  </include>
+
+  <node name="smb_robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" output="screen">
+    <param name="publish_frequency" value="50"/>
+    <param name="use_tf_static"     value="true"/>
+    <remap from="robot_description" to="$(arg robot_description)"/>
+  </node>
+
+  <!-- Start EKF for localization -->
+  <group if="$(arg enable_ekf)" >
+    <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization">
+      <rosparam command="load" file="$(find smb_control)/config/localization.yaml" />
+    </node>
+  </group>
+
+  <node name="rqt_multiplot" pkg="rqt_multiplot" type="rqt_multiplot" output="screen" />
+
+  <node name="rviz" pkg="rviz" type="rviz" output="screen" />
+
+</launch>
