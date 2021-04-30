@@ -23,9 +23,7 @@ int main(int argc, char **argv)
     {
         double linearX(0.8f);
         double angularZ(0.5f);
-
         setSpeed.publishMsg(linearX, angularZ);
-
 
         //sleep node until next cycle
         rate.sleep();

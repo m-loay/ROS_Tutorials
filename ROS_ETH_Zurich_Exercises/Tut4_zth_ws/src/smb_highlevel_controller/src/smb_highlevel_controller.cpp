@@ -17,6 +17,7 @@ namespace smb_highlevel_controller
         {
             ROS_ERROR("Could not find params for node : %s", nodeName.c_str());
         }
+        
         //create laser scan subscriber
         subscriber_ = nodeHandle_.subscribe(topic, queue_size, &SmbHighLevelController::LaserCallback, this);
 

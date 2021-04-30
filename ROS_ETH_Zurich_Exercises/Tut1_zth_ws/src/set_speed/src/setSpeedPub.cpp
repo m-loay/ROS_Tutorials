@@ -17,7 +17,6 @@ namespace SetSpeed
     {
     }
 
-
     void SetSpeed::publishMsg(const double linearX, const double angularZ)
     {
         geometry_msgs::Twist speed_msg;

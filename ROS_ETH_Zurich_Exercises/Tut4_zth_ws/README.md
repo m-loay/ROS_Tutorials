@@ -30,7 +30,7 @@ This is the solution to exercise 4, course Eth zurich.
 
 In this exercise, it's required the following:  
 1. use **rqt_multiplot** with exercise 3 to plot `/odometry/filtered`:  
-    - The adapted launch file can be found here --> * [smb_highlevel_controller_bag.launch](src/smb_highlevel_controller/launch/smb_highlevel_controller_bag.launch)
+    - The adapted launch file can be found here --> * [smb_highlevel_controller.launch](src/smb_highlevel_controller/launch/smb_highlevel_controller.launch)
 
 
     - Configuration of **rqt_multiplot** can be found here --> * [rqt_multiplot.xml](src/smb_highlevel_controller/smb_rviz/rqt_multiplot.xml)
@@ -47,7 +47,11 @@ In this exercise, it's required the following:
     using ros bag `smb_navigation.bag` and visualize the point cloud points: 
 
     - The adapted launch file can be found here --> * [smb_highlevel_controller.launch](src/smb_highlevel_controller/launch/smb_highlevel_controller.launch)
+
     - Configuration of **rviz** can be found here --> * [ * [smb_rviz/](src/smb_highlevel_controller/smb_rviz)
+
+    - use ros command to run the bag:
+      `rosbag play  smb_navigation.bag` --> check this [link](https://rsl.ethz.ch/education-students/lectures/ros.html) to get the bag.
 
     - Rviz Output on drving to pillar:
       ![alt text](images/rviz_slam.png)
